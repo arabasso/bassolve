@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.1.RELEASE</version>
+		<relativePath/>
+	</parent>
+	
 	<groupId>sk.host.arabasso.bassolve</groupId>
 	<artifactId>bassolve</artifactId>
 	<version>1.0</version>
@@ -35,13 +43,30 @@
 						<target>1.8</target>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.antlr</groupId>
+					<artifactId>antlr4-maven-plugin</artifactId>
+					<version>4.5.3</version>
+					<configuration>
+						<sourceDirectory>src/main/antlr/</sourceDirectory>
+						<outputDirectory>src/main/java/sk/host/arabasso/bassolve/parser/antlr</outputDirectory>
+						<listener>true</listener>
+						<visitor>true</visitor>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>antlr4</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
 
 	<modules>
 		<module>core</module>
-		<module>parser</module>
 		<module>app</module>
 		<module>web</module>
 	</modules>

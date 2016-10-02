@@ -1,7 +1,7 @@
 grammar Exp;
 
 @header {
-package sk.host.arabasso.bassolve.parser.antlr;
+package sk.host.arabasso.bassolve.core.parser;
 }
 
 equation

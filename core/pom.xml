@@ -14,4 +14,12 @@
 	<name>bassolve.core</name>
 	<description>Bassolve core</description>
 	<url>http://arabasso.host.sk</url>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4-runtime</artifactId>
+			<version>4.5.3</version>
+		</dependency>
+	</dependencies>
 </project>

@@ -1,1 +1,1 @@
-include 'core', 'app', 'parser', 'web'
+include 'core', 'app', 'web'

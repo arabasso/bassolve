@@ -1,6 +1,6 @@
 // Generated from Exp.g4 by ANTLR 4.5.3
 
-package sk.host.arabasso.bassolve.parser.antlr;
+package sk.host.arabasso.bassolve.core.parser;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
