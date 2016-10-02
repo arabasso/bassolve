@@ -1,0 +1,12 @@
+group = 'sk.host.arabasso.bassolve'
+version = '1.0'
+description = 'Bassolve web application'
+
+dependencies {
+	compile project(":core")
+	compile project(":parser")
+}
+
+jar {
+	baseName = 'bassolve.web'
+}

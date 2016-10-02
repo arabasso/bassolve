@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>sk.host.arabasso.bassolve</groupId>
+		<artifactId>bassolve</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<groupId>sk.host.arabasso.bassolve</groupId>
+	<artifactId>bassolve.parser</artifactId>
+	<version>1.0</version>
+	<name>bassolve.parser</name>
+	<description>Bassolve parser</description>
+	<url>http://arabasso.host.sk</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>sk.host.arabasso.bassolve</groupId>
+			<artifactId>bassolve.core</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4-runtime</artifactId>
+			<version>4.5.3</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.antlr</groupId>
+					<artifactId>antlr4-maven-plugin</artifactId>
+					<version>4.5.3</version>
+					<configuration>
+						<sourceDirectory>src/main/antlr/</sourceDirectory>
+						<outputDirectory>src/main/java/sk/host/arabasso/bassolve/parser/antlr</outputDirectory>
+						<listener>true</listener>
+						<visitor>true</visitor>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>antlr4</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

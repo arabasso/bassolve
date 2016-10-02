@@ -1,0 +1,11 @@
+group = 'sk.host.arabasso.bassolve'
+version = '1.0'
+description = 'Bassolve core'
+
+dependencies {
+
+}
+
+jar {
+	baseName = 'bassolve.core'
+}
