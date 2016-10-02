@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width"/>
     <title>Title</title>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/normalize.css/3.0.2/normalize.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+	
+	<!--[if lte IE 8]>
+	<script type="text/javascript" th:src="@{/webjars/html5shiv/3.7.3/html5shiv.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/respond/1.4.2/src/respond.js}"></script>
+	<![endif]-->
+	
+	<script type="text/javascript" th:src="@{/script.js}"></script>
 </head>
 <body>
+<header>
+    Header
+</header>
 
+<nav>
+    <ul>
+        <li><a th:href="@{/index}">Home</a></li>
+    </ul>
+</nav>
+
+<section id="content">
+    Content
+</section>
+
+<footer>
+    Footer
+</footer>
 </body>
 </html>
