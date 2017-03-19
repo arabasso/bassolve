@@ -19,21 +19,42 @@ public class ExpBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Ex
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitEquation(ExpParser.EquationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCompileUnit(ExpParser.CompileUnitContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpression(ExpParser.ExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitUnaryExpression(ExpParser.UnaryExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMultiplyingExpression(ExpParser.MultiplyingExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlusMinusExpression(ExpParser.PlusMinusExpressionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMultiplyingExpressionNext(ExpParser.MultiplyingExpressionNextContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTimesDivExpression(ExpParser.TimesDivExpressionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitPowExpressionNext(ExpParser.PowExpressionNextContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -47,28 +68,35 @@ public class ExpBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Ex
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAtom(ExpParser.AtomContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAtomExpressionNext(ExpParser.AtomExpressionNextContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitScientific(ExpParser.ScientificContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNumberExpression(ExpParser.NumberExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunc(ExpParser.FuncContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIdentfierExpression(ExpParser.IdentfierExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRelop(ExpParser.RelopContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFuncExpressionNext(ExpParser.FuncExpressionNextContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitParensExpression(ExpParser.ParensExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -82,7 +110,7 @@ public class ExpBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Ex
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVariable(ExpParser.VariableContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunc(ExpParser.FuncContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

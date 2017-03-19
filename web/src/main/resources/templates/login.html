@@ -1,0 +1,27 @@
+<section class="content" layout:decorator="layout" layout:fragment="content"
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <h2 th:text="#{menu.link.login}">Login</h2>
+    <form th:action="@{/login}" method="post">
+        <fieldset>
+            <div th:if="${param.error}">
+                <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">Wrong input!</span>
+            </div>
+
+            <div>
+                <label for="username" th:text="Username">Username</label>
+                <input type="text" id="username" name="username" th:placeholder="Username"/>
+            </div>
+
+            <div>
+                <label for="password" th:text="Password">Password</label>
+                <input type="password" id="password" name="password" th:placeholder="Password"/>
+            </div>
+
+            <div>
+                <button type="submit" th:text="Login">Login</button>
+            </div>
+        </fieldset>
+    </form>
+</section>

@@ -1,37 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width"/>
-    <title>Title</title>
-	
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/normalize.css/3.0.2/normalize.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
-	
-	<!--[if lte IE 8]>
-	<script type="text/javascript" th:src="@{/webjars/html5shiv/3.7.3/html5shiv.js}"></script>
-	<script type="text/javascript" th:src="@{/webjars/respond/1.4.2/src/respond.js}"></script>
-	<![endif]-->
-	
-	<script type="text/javascript" th:src="@{/script.js}"></script>
-</head>
-<body>
-<header>
-    Header
-</header>
+<section layout:decorator="layout" layout:fragment="body"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+         xmlns:th="http://www.thymeleaf.org">
+    <!--/*@thymesVar id="expression" type="sk.host.arabasso.bassolve.web.form.ExpressionForm"*/-->
+    <form th:action="@{/index}" th:object="${form}" method="post">
+        <ul th:if="${#fields.hasErrors('global')}">
+            <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</li>
+        </ul>
 
-<nav>
-    <ul>
-        <li><a th:href="@{/index}">Home</a></li>
-    </ul>
-</nav>
+        <div>
+            <label th:for="*{value}">Expressão</label>
+            <input type="text" th:field="*{value}" th:placeholder="Expression"/>
+            <button type="submit">Resolver</button>
+            <div th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></div>
+        </div>
+    </form>
 
-<section id="content">
-    Content
+    <div id="expression" th:if="${form.hasValue()}">
+        <!--/*@thymesVar id="exp" type="System.util.String"*/-->
+        <div th:each="exp : ${form.visit()}" th:text="|= ${exp}|"></div>
+    </div>
 </section>
-
-<footer>
-    Footer
-</footer>
-</body>
-</html>

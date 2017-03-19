@@ -4,51 +4,49 @@ grammar Exp;
 package sk.host.arabasso.bassolve.core.parser;
 }
 
-equation
-    : expression
-    | expression relop expression
+compileUnit
+    : expression EOF
     ;
 
 expression
-    : multiplyingExpression ((PLUS | MINUS) multiplyingExpression)*
+    : op=(PLUS|MINUS) expression                                # unaryExpression
+    | left=multiplyingExpr op=(PLUS|MINUS) right=expression     # plusMinusExpression
+    | multiplyingExpr                                           # multiplyingExpressionNext
     ;
 
-multiplyingExpression
-    : powExpression ((TIMES | DIV) powExpression)*
+multiplyingExpr
+    : left=powExpr op=(TIMES|DIV) right=multiplyingExpr         # timesDivExpression
+    | powExpr                                                   # powExpressionNext
     ;
 
-powExpression
-    : atom (POW multiplyingExpression)?
+powExpr
+    : left=atom op=POW right=powExpr                            # powExpression
+    | atom                                                      # atomExpressionNext
     ;
 
 atom
-    : scientific
-    | variable
-    | LPAREN expression RPAREN
-    | func
+    : value=number                                              # numberExpression
+    | value=identifier                                          # identfierExpression
+    | func                                                      # funcExpressionNext
+    | LPAREN expression RPAREN                                  # parensExpression
     ;
 
-scientific
-    : number (E number)?
+//expression
+//    : LPAREN expression RPAREN                         # parensExpression
+//    | op=(PLUS|MINUS) expression                       # unaryExpression
+//    | left=expression op=POW right=expression          # infixExpression
+//    | left=expression op=(TIMES|DIV) right=expression  # infixExpression
+//    | left=expression op=(PLUS|MINUS) right=expression # infixExpression
+//    | id=identifier LPAREN expression RPAREN           # funcExpression
+//    | value=number                                     # numberExpr
+//    ;
+
+number
+    : DIGIT+ (POINT DIGIT+)? (E (PLUS|MINUS) DIGIT+)?
     ;
 
 func
-    : identifier LPAREN expression RPAREN
-    ;
-
-relop
-    : EQ
-    | GT
-    | LT
-    ;
-
-number
-    : MINUS? DIGIT + (POINT DIGIT +)?
-    | MINUS? DIGIT + (POINT DIGIT +)? variable
-    ;
-
-variable
-    : MINUS? identifier
+    : id=identifier LPAREN expression RPAREN
     ;
 
 identifier
@@ -104,11 +102,11 @@ POW
     ;
 
 LETTER
-    : ('a' .. 'z') | ('A' .. 'Z')
+    : [a-zA-Z]
     ;
 
 DIGIT
-    : ('0' .. '9')
+    : [0-9]
     ;
 
 WS

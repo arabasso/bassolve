@@ -10,7 +10,7 @@ dependencies {
 
 generateGrammarSource {
     arguments += ['-visitor']
-    outputDirectory = new File("src/main/java/sk/host/arabasso/bassolve/core/parser")
+    outputDirectory = new File("${project.projectDir}/src/main/java/sk/host/arabasso/bassolve/core/parser")
 }
 
 jar {

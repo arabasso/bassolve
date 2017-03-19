@@ -13,53 +13,88 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface ExpVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link ExpParser#equation}.
+	 * Visit a parse tree produced by {@link ExpParser#compileUnit}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitEquation(ExpParser.EquationContext ctx);
+	T visitCompileUnit(ExpParser.CompileUnitContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpParser#expression}.
+	 * Visit a parse tree produced by the {@code unaryExpression}
+	 * labeled alternative in {@link ExpParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpression(ExpParser.ExpressionContext ctx);
+	T visitUnaryExpression(ExpParser.UnaryExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpParser#multiplyingExpression}.
+	 * Visit a parse tree produced by the {@code plusMinusExpression}
+	 * labeled alternative in {@link ExpParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMultiplyingExpression(ExpParser.MultiplyingExpressionContext ctx);
+	T visitPlusMinusExpression(ExpParser.PlusMinusExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpParser#powExpression}.
+	 * Visit a parse tree produced by the {@code multiplyingExpressionNext}
+	 * labeled alternative in {@link ExpParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultiplyingExpressionNext(ExpParser.MultiplyingExpressionNextContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code timesDivExpression}
+	 * labeled alternative in {@link ExpParser#multiplyingExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTimesDivExpression(ExpParser.TimesDivExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code powExpressionNext}
+	 * labeled alternative in {@link ExpParser#multiplyingExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPowExpressionNext(ExpParser.PowExpressionNextContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code powExpression}
+	 * labeled alternative in {@link ExpParser#powExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitPowExpression(ExpParser.PowExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpParser#atom}.
+	 * Visit a parse tree produced by the {@code atomExpressionNext}
+	 * labeled alternative in {@link ExpParser#powExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAtom(ExpParser.AtomContext ctx);
+	T visitAtomExpressionNext(ExpParser.AtomExpressionNextContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpParser#scientific}.
+	 * Visit a parse tree produced by the {@code numberExpression}
+	 * labeled alternative in {@link ExpParser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitScientific(ExpParser.ScientificContext ctx);
+	T visitNumberExpression(ExpParser.NumberExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpParser#func}.
+	 * Visit a parse tree produced by the {@code identfierExpression}
+	 * labeled alternative in {@link ExpParser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunc(ExpParser.FuncContext ctx);
+	T visitIdentfierExpression(ExpParser.IdentfierExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpParser#relop}.
+	 * Visit a parse tree produced by the {@code funcExpressionNext}
+	 * labeled alternative in {@link ExpParser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRelop(ExpParser.RelopContext ctx);
+	T visitFuncExpressionNext(ExpParser.FuncExpressionNextContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code parensExpression}
+	 * labeled alternative in {@link ExpParser#atom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParensExpression(ExpParser.ParensExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExpParser#number}.
 	 * @param ctx the parse tree
@@ -67,11 +102,11 @@ public interface ExpVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNumber(ExpParser.NumberContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpParser#variable}.
+	 * Visit a parse tree produced by {@link ExpParser#func}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariable(ExpParser.VariableContext ctx);
+	T visitFunc(ExpParser.FuncContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExpParser#identifier}.
 	 * @param ctx the parse tree
