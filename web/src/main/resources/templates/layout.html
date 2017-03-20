@@ -21,15 +21,15 @@
 </head>
 <body>
 <header>
-    Bassolve
+    <div th:text="#{application.title}"></div>
 </header>
 
 <nav>
     <ul>
         <li><a th:href="@{/index}">Home</a></li>
-        <li sec:authorize="isAuthenticated()"><a th:href="@{/heuristic/index}" th:text="Heuristics">Heuristics</a></li>
-        <li sec:authorize="isAnonymous()"><a th:href="@{/login}" th:text="Login">Login</a></li>
-        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" th:text="Logout">Logout</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/heuristic/index}" th:text="#{application.menu.heuristic.text}">Heuristics</a></li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/login}" th:text="#{application.menu.login.text}">Login</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" th:text="#{application.menu.logout.text}">Logout</a></li>
     </ul>
 </nav>
 

@@ -8,9 +8,9 @@
         </ul>
 
         <div>
-            <label th:for="*{value}">Expressão</label>
-            <input type="text" th:field="*{value}" th:placeholder="Expression"/>
-            <button type="submit">Resolver</button>
+            <label th:for="*{value}" th:text="#{expression.form.text}">Expression</label>
+            <input type="text" th:field="*{value}" th:placeholder="#{expression.form.placeholder}"/>
+            <button type="submit" th:text="#{expression.form.submit.text}">Solve</button>
             <div th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></div>
         </div>
     </form>

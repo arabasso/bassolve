@@ -2,7 +2,7 @@
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
          xmlns:th="http://www.thymeleaf.org">
 
-    <h2 th:text="Login">Login</h2>
+    <h2 th:text="#{login.title}">Login</h2>
     <form th:action="@{/login}" method="post">
         <fieldset>
             <div th:if="${param.error}">
@@ -10,17 +10,17 @@
             </div>
 
             <div>
-                <label for="username" th:text="Username">Username</label>
-                <input type="text" id="username" name="username" th:placeholder="Username"/>
+                <label for="username" th:text="#{login.form.username.text}">Username</label>
+                <input type="text" id="username" name="username" th:placeholder="#{login.form.username.placeholder}"/>
             </div>
 
             <div>
-                <label for="password" th:text="Password">Password</label>
-                <input type="password" id="password" name="password" th:placeholder="Password"/>
+                <label for="password" th:text="#{login.form.password.text}">Password</label>
+                <input type="password" id="password" name="password" th:placeholder="#{login.form.password.placeholder}"/>
             </div>
 
             <div>
-                <button type="submit" th:text="Login">Login</button>
+                <button type="submit" th:text="#{login.form.submit.text}">Login</button>
             </div>
         </fieldset>
     </form>

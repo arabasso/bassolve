@@ -2,16 +2,16 @@
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
          xmlns:th="http://www.thymeleaf.org">
 
-    <h2>List</h2>
+    <h2 th:text="#{heuristic.index.title}">List</h2>
 
     <table>
         <thead>
         <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th th:text="#{heuristic.index.list.name.text}">Name</th>
+            <th th:text="#{heuristic.index.list.date.text}">Date</th>
+            <th th:text="#{heuristic.index.list.action.edit.text}">Edit</th>
+            <th th:text="#{heuristic.index.list.action.delete.text}">Delete</th>
         </tr>
         </thead>
 
@@ -20,13 +20,13 @@
         <tr th:each="u,status : ${list}">
             <td th:text="${u.id}"></td>
             <td th:text="${u.name}">Name</td>
-            <td th:text="${u.date}">01/01/0001</td>
-            <td><a th:href="@{/heuristic/edit(id=${u.id})}">Edit</a></td>
-            <td><a th:href="@{/heuristic/delete(id=${u.id})}">Delete</a></td>
+            <td th:text="${{u.date}}">01/01/0001</td>
+            <td><a th:href="@{/heuristic/edit(id=${u.id})}" th:text="#{heuristic.index.list.action.link.edit.text}">Edit</a></td>
+            <td><a th:href="@{/heuristic/delete(id=${u.id})}" th:text="#{heuristic.index.list.action.link.delete.text}">Delete</a></td>
         </tr>
         </tbody>
     </table>
     <div>
-        <a th:href="@{/heuristic/create}" title="Create a new heuristic">Create</a>
+        <a th:href="@{/heuristic/create}" th:text="#{heuristic.index.list.action.link.create.text}" th:title="#{heuristic.index.list.action.link.create.title}">Create</a>
     </div>
 </section>

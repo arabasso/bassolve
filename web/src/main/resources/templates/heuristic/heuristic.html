@@ -1,7 +1,7 @@
 <section layout:decorator="layout" layout:fragment="body"
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
          xmlns:th="http://www.thymeleaf.org">
-    <h2>Create</h2>
+    <h2 th:text="#{heuristic.create.title}">Create</h2>
     <!--/*@thymesVar id="form" type="sk.host.arabasso.bassolve.web.form.HeuristicForm"*/-->
     <form th:action="${#httpServletRequest.requestURI}" th:object="${form}" method="post">
         <ul th:if="${#fields.hasErrors('global')}">
@@ -12,27 +12,27 @@
             <input type="hidden" th:field="*{id}"/>
 
             <div>
-                <label th:for="*{name}">Name</label>
-                <input type="text" th:field="*{name}" placeholder="Name" />
+                <label th:for="*{name}" th:text="#{heuristic.create.form.name.text}">Name</label>
+                <input type="text" th:field="*{name}" th:placeholder="#{heuristic.create.form.name.placeholder}" />
                 <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
             </div>
 
             <div>
-                <label th:for="*{date}">Date</label>
-                <input type="text" th:field="*{date}" placeholder="Date" readonly="readonly" />
+                <label th:for="*{date}" th:text="#{heuristic.create.form.date.text}">Date</label>
+                <input type="text" th:field="*{date}" th:placeholder="#{heuristic.create.form.date.placeholder}" readonly="readonly" />
                 <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
             </div>
 
             <div>
-                <label th:for="*{source}">Source</label>
-                <textarea th:name="source" th:text="*{source}" placeholder="Source" />
+                <label th:for="*{source}" th:text="#{heuristic.create.form.source.text}">Source</label>
+                <textarea th:name="source" th:text="*{source}" th:placeholder="#{heuristic.create.form.source.placeholder}" />
                 <div th:id="source"/>
                 <div th:if="${#fields.hasErrors('source')}" th:errors="*{source}"></div>
             </div>
 
             <div>
-                <button type="submit">Create</button>
-                <a th:href="@{/heuristic/index}">Cancel</a>
+                <button type="submit" th:text="#{heuristic.create.form.submit.text}">Create</button>
+                <a th:href="@{/heuristic/index}" th:text="#{heuristic.create.link.cancel.text}" th:title="#{heuristic.create.link.cancel.title}">Cancel</a>
             </div>
         </fieldset>
     </form>
