@@ -98,3 +98,7 @@ atlassian-ide-plugin.xml
 # Logs
 # ----
 /*.log
+
+/*.trace.db
+/*.mv.db
+/**/*.iml
