@@ -9,11 +9,6 @@ public class AdditionNode extends InfixExpressionNode {
         super(left, right);
     }
 
-//    @Override
-//    public double execute(double left, double right) {
-//        return left + right;
-//    }
-
     @Override
     public ExpressionNode newInstance(ExpressionNode left, ExpressionNode right) {
         return new AdditionNode(left, right);
@@ -23,9 +18,4 @@ public class AdditionNode extends InfixExpressionNode {
     protected Object clone() throws CloneNotSupportedException {
         return newInstance(getLeft(), getRight());
     }
-
-//    @Override
-//    public ExpressionNode simplify(NumberNode left, NumberNode right) {
-//        return new NumberNode(left.getValue() + right.getValue());
-//    }
 }

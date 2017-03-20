@@ -38,6 +38,7 @@ public class HeuristicController {
 
     @GetMapping(value = "/create")
     public String create(Model model){
+
         model.addAttribute("form", new HeuristicForm());
 
         return "heuristic/heuristic";

@@ -40,7 +40,8 @@ public abstract class InfixExpressionNode extends ExpressionNode  {
 
     @Override
     public int hashCode() {
-        int result = left.hashCode();
+        int result = getClass().hashCode();
+        result = 31 * result + left.hashCode();
         result = 31 * result + right.hashCode();
         return result;
     }

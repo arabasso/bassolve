@@ -44,7 +44,8 @@ public class FunctionNode extends ExpressionNode {
 
     @Override
     public int hashCode() {
-        int result = function.hashCode();
+        int result = getClass().hashCode();
+        result = 31 * result + function.hashCode();
         result = 31 * result + argument.hashCode();
         return result;
     }

@@ -25,7 +25,8 @@
 
             <div>
                 <label th:for="*{source}">Source</label>
-                <textarea rows="10" cols="50" th:field="*{source}" placeholder="Source" />
+                <textarea th:name="source" th:text="*{source}" placeholder="Source" />
+                <div th:id="source"/>
                 <div th:if="${#fields.hasErrors('source')}" th:errors="*{source}"></div>
             </div>
 

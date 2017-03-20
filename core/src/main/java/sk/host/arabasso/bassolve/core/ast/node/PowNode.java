@@ -9,11 +9,6 @@ public class PowNode extends InfixExpressionNode {
         super(left, right);
     }
 
-//    @Override
-//    public double execute(double left, double right) {
-//        return Math.pow(left, right);
-//    }
-
     @Override
     public ExpressionNode newInstance(ExpressionNode left, ExpressionNode right) {
         return new PowNode(left, right);
