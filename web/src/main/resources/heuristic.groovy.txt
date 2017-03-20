@@ -1,0 +1,17 @@
+import sk.host.arabasso.bassolve.core.ast.node.*
+import sk.host.arabasso.bassolve.core.visitor.AbstractHeuristicExpressionVisitor
+
+/**
+ * Created by arabasso on 20/03/2017.
+ */
+class ExpressionHeuristicVisitor extends AbstractHeuristicExpressionVisitor<ExpressionNode> {
+    @Override
+    boolean isApplicable(ExpressionNode node) {
+        return false;
+    }
+
+    @Override
+    ExpressionNode apply(ExpressionNode node) {
+        return node
+    }
+}

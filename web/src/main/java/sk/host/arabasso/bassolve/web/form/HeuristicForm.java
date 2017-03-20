@@ -4,9 +4,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.validation.annotation.Validated;
 import sk.host.arabasso.bassolve.web.entity.Heuristic;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -25,7 +22,7 @@ public class HeuristicForm {
 
     public HeuristicForm() {
         this.date = LocalDate.now();
-        this.source = new Scanner(getClass().getResourceAsStream("/heuristic.groovy")).useDelimiter("\\A").next();
+        this.source = new Scanner(getClass().getResourceAsStream("/heuristic.groovy.txt")).useDelimiter("\\A").next();
     }
 
     public HeuristicForm(Heuristic heuristic) {

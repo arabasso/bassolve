@@ -1,8 +1,7 @@
 package sk.host.arabasso.bassolve.web.entity;
 
 import groovy.lang.GroovyClassLoader;
-import org.springframework.format.annotation.DateTimeFormat;
-import sk.host.arabasso.bassolve.core.HeuristicExpression;
+import sk.host.arabasso.bassolve.core.visitor.HeuristicExpressionVisitor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -90,18 +89,18 @@ public class Heuristic implements Serializable {
         return tests;
     }
 
-    public HeuristicExpression getExpression() {
+    public HeuristicExpressionVisitor getHeuristic() {
         Class clazz = compile();
 
         try {
-            return (HeuristicExpression) clazz.newInstance();
+            return (HeuristicExpressionVisitor) clazz.newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
 
-        return new HeuristicExpression();
+        return new HeuristicExpressionVisitor();
     }
 
     public Class compile() {

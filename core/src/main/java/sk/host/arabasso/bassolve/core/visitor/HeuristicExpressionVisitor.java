@@ -1,26 +1,20 @@
 package sk.host.arabasso.bassolve.core.visitor;
 
-import sk.host.arabasso.bassolve.core.HeuristicExpression;
 import sk.host.arabasso.bassolve.core.ast.node.*;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by arabasso on 19/03/2017.
- *
+ * Created by arabasso on 20/03/2017.
  */
 public class HeuristicExpressionVisitor extends AstVisitor<ExpressionNode> {
 
-    private List<HeuristicExpression> heuristics = new ArrayList<>();
-
-    public void addHeuristicExpression(HeuristicExpression heuristicExpressions){
-        heuristics.add(heuristicExpressions);
+    public boolean isApplicable(ExpressionNode node) {
+        return false;
     }
 
-    public void addHeuristicExpressions(List<HeuristicExpression> heuristicExpressions){
-        heuristics.addAll(heuristicExpressions);
+    public ExpressionNode apply(ExpressionNode node) {
+        return node;
     }
 
     @Override
@@ -30,84 +24,74 @@ public class HeuristicExpressionVisitor extends AstVisitor<ExpressionNode> {
 
     @Override
     public ExpressionNode visit(AdditionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        ExpressionNode he = apply(node);
-
-        return (he != null)
-                ? he
-                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
-    }
-
-    private ExpressionNode apply(ExpressionNode node) {
-        for (HeuristicExpression he :
-                heuristics) {
-            if (he.isApplicable(node)){
-                return he.apply(node);
-            }
+        if (isApplicable(node)) {
+            return apply(node);
         }
-        return null;
+
+        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
     }
 
     @Override
     public ExpressionNode visit(SubtractionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        ExpressionNode he = apply(node);
+        if (isApplicable(node)) {
+            return apply(node);
+        }
 
-        return (he != null)
-                ? he
-                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
     }
 
     @Override
     public ExpressionNode visit(MultiplicationNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        ExpressionNode he = apply(node);
+        if (isApplicable(node)) {
+            return apply(node);
+        }
 
-        return (he != null)
-                ? he
-                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
     }
 
     @Override
     public ExpressionNode visit(PowNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        ExpressionNode he = apply(node);
+        if (isApplicable(node)) {
+            return apply(node);
+        }
 
-        return (he != null)
-                ? he
-                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
     }
 
     @Override
     public ExpressionNode visit(DivisionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        ExpressionNode he = apply(node);
+        if (isApplicable(node)) {
+            return apply(node);
+        }
 
-        return (he != null)
-                ? he
-                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
     }
 
     @Override
     public ExpressionNode visit(NegateNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        ExpressionNode he = apply(node);
+        if (isApplicable(node)) {
+            return apply(node);
+        }
 
-        return (he != null)
-                ? he
-                : new NegateNode(visit(node.getInnerNode()));
+        return new NegateNode(visit(node.getInnerNode()));
     }
 
     @Override
     public ExpressionNode visit(FunctionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        ExpressionNode he = apply(node);
+        if (isApplicable(node)) {
+            return apply(node);
+        }
 
-        return (he != null)
-                ? he
-                : new FunctionNode(node.getFunction(), visit(node.getArgument()));
+        return new FunctionNode(node.getFunction(), visit(node.getArgument()));
     }
 
     @Override
     public ExpressionNode visit(ParenthesisNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        ExpressionNode he = apply(node);
+        if (isApplicable(node)) {
+            return apply(node);
+        }
 
-        return (he != null)
-                ? he
-                : new ParenthesisNode(visit(node.getInnerNode()));
+        return new ParenthesisNode(visit(node.getInnerNode()));
     }
 
     @Override

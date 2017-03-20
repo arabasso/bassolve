@@ -1,14 +1,13 @@
-package sk.host.arabasso.bassolve.core;
+package sk.host.arabasso.bassolve.core.visitor;
 
 import sk.host.arabasso.bassolve.core.ast.node.ExpressionNode;
 
 import java.lang.reflect.ParameterizedType;
 
 /**
- * Created by arabasso on 19/03/2017.
+ * Created by arabasso on 20/03/2017.
  */
-public abstract class AbstractHeuristicExpression<T>
-        extends HeuristicExpression {
+public abstract class AbstractHeuristicExpressionVisitor<T> extends HeuristicExpressionVisitor {
 
     @Override
     public boolean isApplicable(
@@ -27,6 +26,7 @@ public abstract class AbstractHeuristicExpression<T>
     @Override
     public ExpressionNode apply(
             ExpressionNode node) {
+
         return apply((T) node);
     }
 

@@ -1,22 +1,18 @@
 package sk.host.arabasso.bassolve.web.controller;
 
-import groovy.lang.GroovyClassLoader;
-import org.codehaus.groovy.control.CompilerConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import sk.host.arabasso.bassolve.core.HeuristicExpression;
-import sk.host.arabasso.bassolve.web.Application;
-import sk.host.arabasso.bassolve.web.entity.Heuristic;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import sk.host.arabasso.bassolve.core.ast.node.ExpressionNode;
+import sk.host.arabasso.bassolve.core.visitor.AstVisitor;
 import sk.host.arabasso.bassolve.web.form.ExpressionForm;
 import sk.host.arabasso.bassolve.web.service.HeuristicService;
 
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by arabasso on 02/10/2016.
@@ -45,7 +41,11 @@ public class HomeController {
             return "index";
         }
 
-        form.addHeuristicExpressions(heuristicService.getHeuristicExpressions());
+        for (AstVisitor<ExpressionNode> visitor : heuristicService.getHeuristics()) {
+            form.addVisitor(visitor);
+        }
+
+        //form.addHeuristicExpressions(heuristicService.getHeuristicExpressions());
 
         model.addAttribute("form", form);
 
