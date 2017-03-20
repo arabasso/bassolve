@@ -53,7 +53,7 @@ public class PrintExpressionVisitor extends AstVisitor<String> {
 
     @Override
     public String visit(FunctionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return node.getFunction().getName() + "(" + visit(node.getArgument()) + ")";
+        return node.getMethod() + "(" + visit(node.getArgument()) + ")";
     }
 
     @Override

@@ -82,7 +82,7 @@ public class HeuristicExpressionVisitor extends AstVisitor<ExpressionNode> {
             return apply(node);
         }
 
-        return new FunctionNode(node.getFunction(), visit(node.getArgument()));
+        return new FunctionNode(node.getMethod(), visit(node.getArgument()));
     }
 
     @Override

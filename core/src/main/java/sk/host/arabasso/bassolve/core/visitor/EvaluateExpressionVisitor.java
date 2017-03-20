@@ -46,7 +46,8 @@ public class EvaluateExpressionVisitor extends AstVisitor<Double> {
 
     @Override
     public Double visit(FunctionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return (Double) node.getFunction().invoke(null, visit(node.getArgument()));
+        //return (Double) node.getMethod().invoke(null, visit(node.getArgument()));
+        return 0.0;
     }
 
     @Override

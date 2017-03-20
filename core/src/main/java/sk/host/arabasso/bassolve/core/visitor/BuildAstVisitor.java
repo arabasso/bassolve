@@ -117,14 +117,14 @@ public class BuildAstVisitor extends ExpBaseVisitor<ExpressionNode> {
 
     @Override
     public ExpressionNode visitFunc(ExpParser.FuncContext ctx) {
-        Method method = null;
-        try {
-            method = Math.class.getMethod(ctx.id.getText(), double.class);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
+//        Method method = null;
+//        try {
+//            method = Math.class.getMethod(ctx.id.getText(), double.class);
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        }
 
-        return new FunctionNode(method, visit(ctx.expression()));
+        return new FunctionNode(ctx.id.getText(), visit(ctx.expression()));
     }
 
     @Override

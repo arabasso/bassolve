@@ -1,24 +1,22 @@
 package sk.host.arabasso.bassolve.core.ast.node;
 
-import java.lang.reflect.Method;
-
 /**
  * Created by arabasso on 04/10/2016.
  *
  */
 public class FunctionNode extends ExpressionNode {
-    private Method function;
+    private String method;
     private ExpressionNode argument;
 
     public FunctionNode(
-            Method method,
+            String method,
             ExpressionNode argument) {
-        this.function = method;
+        this.method = method;
         this.argument = argument;
     }
 
-    public Method getFunction() {
-        return function;
+    public String getMethod() {
+        return method;
     }
 
     public ExpressionNode getArgument() {
@@ -28,7 +26,7 @@ public class FunctionNode extends ExpressionNode {
     @Override
     protected Object clone()
             throws CloneNotSupportedException {
-        return new FunctionNode(getFunction(), getArgument());
+        return new FunctionNode(getMethod(), getArgument());
     }
 
     @Override
@@ -38,14 +36,14 @@ public class FunctionNode extends ExpressionNode {
 
         FunctionNode that = (FunctionNode) o;
 
-        if (!function.equals(that.function)) return false;
+        if (!method.equals(that.method)) return false;
         return argument.equals(that.argument);
     }
 
     @Override
     public int hashCode() {
         int result = getClass().hashCode();
-        result = 31 * result + function.hashCode();
+        result = 31 * result + method.hashCode();
         result = 31 * result + argument.hashCode();
         return result;
     }
@@ -53,7 +51,7 @@ public class FunctionNode extends ExpressionNode {
     @Override
     public int typeHashCode() {
         int result = getClass().hashCode();
-        result = 31 * result + function.hashCode();
+        result = 31 * result + method.hashCode();
         result = 31 * result + argument.typeHashCode();
         return result;
     }
