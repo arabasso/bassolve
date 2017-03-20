@@ -1,6 +1,10 @@
 package sk.host.arabasso.bassolve.web.form;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.validation.annotation.Validated;
+import sk.host.arabasso.bassolve.web.entity.Heuristic;
+
+import java.time.LocalDate;
 
 /**
  * Created by arabasso on 19/03/2017.
@@ -8,4 +12,52 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 public class HeuristicForm {
+    private long id;
+    @NotBlank
+    private String name;
+    private LocalDate date;
+    @NotBlank
+    private String source;
+
+    public HeuristicForm() {
+        this.date = LocalDate.now();
+    }
+
+    public HeuristicForm(Heuristic heuristic) {
+        this.id = heuristic.getId();
+        this.name = heuristic.getName();
+        this.source = heuristic.getSource();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
 }

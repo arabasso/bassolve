@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width"/>
@@ -24,6 +25,9 @@
 <nav>
     <ul>
         <li><a th:href="@{/index}">Home</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/heuristic/index}" th:text="Heuristics">Heuristics</a></li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/login}" th:text="Login">Login</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" th:text="Logout">Logout</a></li>
     </ul>
 </nav>
 

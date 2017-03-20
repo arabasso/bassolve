@@ -1,8 +1,8 @@
-<section class="content" layout:decorator="layout" layout:fragment="content"
-         xmlns:th="http://www.thymeleaf.org"
-         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<section layout:decorator="layout" layout:fragment="body"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+         xmlns:th="http://www.thymeleaf.org">
 
-    <h2 th:text="#{menu.link.login}">Login</h2>
+    <h2 th:text="Login">Login</h2>
     <form th:action="@{/login}" method="post">
         <fieldset>
             <div th:if="${param.error}">

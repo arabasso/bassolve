@@ -35,4 +35,9 @@ public class NumberNode extends ExpressionNode {
         long temp = Double.doubleToLongBits(value);
         return (int) (temp ^ (temp >>> 32));
     }
+
+    @Override
+    public int typeHashCode() {
+        return getClass().hashCode();
+    }
 }

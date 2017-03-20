@@ -19,12 +19,12 @@ public interface ExpVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCompileUnit(ExpParser.CompileUnitContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code unaryExpression}
+	 * Visit a parse tree produced by the {@code multiplyingExpressionNext}
 	 * labeled alternative in {@link ExpParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnaryExpression(ExpParser.UnaryExpressionContext ctx);
+	T visitMultiplyingExpressionNext(ExpParser.MultiplyingExpressionNextContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code plusMinusExpression}
 	 * labeled alternative in {@link ExpParser#expression}.
@@ -33,12 +33,12 @@ public interface ExpVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPlusMinusExpression(ExpParser.PlusMinusExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code multiplyingExpressionNext}
+	 * Visit a parse tree produced by the {@code unaryExpression}
 	 * labeled alternative in {@link ExpParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMultiplyingExpressionNext(ExpParser.MultiplyingExpressionNextContext ctx);
+	T visitUnaryExpression(ExpParser.UnaryExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code timesDivExpression}
 	 * labeled alternative in {@link ExpParser#multiplyingExpr}.

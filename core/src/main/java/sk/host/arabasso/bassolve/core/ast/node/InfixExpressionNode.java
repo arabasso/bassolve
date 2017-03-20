@@ -45,7 +45,15 @@ public abstract class InfixExpressionNode extends ExpressionNode  {
         return result;
     }
 
-//    public ExpressionNode simplify(){
+    @Override
+    public int typeHashCode() {
+        int result = getClass().hashCode();
+        result = 31 * result + left.typeHashCode();
+        result = 31 * result + right.typeHashCode();
+        return result;
+    }
+
+    //    public ExpressionNode simplify(){
 //        ExpressionNode leftNode = getExpressionWithoutParenthesis(left);
 //        ExpressionNode rightNode = getExpressionWithoutParenthesis(right);
 //

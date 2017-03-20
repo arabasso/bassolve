@@ -26,7 +26,7 @@ public class ExpBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Ex
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitUnaryExpression(ExpParser.UnaryExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMultiplyingExpressionNext(ExpParser.MultiplyingExpressionNextContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -40,7 +40,7 @@ public class ExpBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Ex
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMultiplyingExpressionNext(ExpParser.MultiplyingExpressionNextContext ctx) { return visitChildren(ctx); }
+	@Override public T visitUnaryExpression(ExpParser.UnaryExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -2,4 +2,31 @@
          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
          xmlns:th="http://www.thymeleaf.org">
 
+    <h2>List</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!--/*@thymesVar id="list" type="java.util.List<sk.host.arabasso.bassolve.web.entity.Heuristic>"*/-->
+        <tr th:each="u,status : ${list}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.name}">Name</td>
+            <td th:text="${u.date}">01/01/0001</td>
+            <td><a th:href="@{/heuristic/edit(id=${u.id})}">Edit</a></td>
+            <td><a th:href="@{/heuristic/delete(id=${u.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a th:href="@{/heuristic/create}" title="Create a new heuristic">Create</a>
+    </div>
 </section>

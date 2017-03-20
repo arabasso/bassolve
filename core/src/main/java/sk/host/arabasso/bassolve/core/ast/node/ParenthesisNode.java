@@ -34,4 +34,11 @@ public class ParenthesisNode extends ExpressionNode {
     public int hashCode() {
         return innerNode.hashCode();
     }
+
+    @Override
+    public int typeHashCode() {
+        int result = getClass().hashCode();
+        result = 31 * result + innerNode.typeHashCode();
+        return result;
+    }
 }

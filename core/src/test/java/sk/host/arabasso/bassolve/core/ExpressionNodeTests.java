@@ -1,5 +1,6 @@
 package sk.host.arabasso.bassolve.core;
 
+import org.junit.Before;
 import org.junit.Test;
 import sk.host.arabasso.bassolve.core.ast.node.*;
 
@@ -14,43 +15,95 @@ import static org.junit.Assert.assertThat;
  */
 public class ExpressionNodeTests extends ExpressionTests {
 
+    private NumberNode numberNode0, numberNode1;
+    private AdditionNode addNode;
+    private SubtractionNode subNode;
+
+    @Before
+    public void initialization() {
+        numberNode0 = new NumberNode(0);
+        numberNode1 = new NumberNode(1);
+        addNode = new AdditionNode(numberNode0, numberNode0);
+        subNode = new SubtractionNode(numberNode0, numberNode0);
+    }
+
     @Test
     public void numberNodeEquals(){
-        assertThat(new NumberNode(0), is(equalTo(new NumberNode(0))));
+        assertThat(numberNode0, is(equalTo(numberNode0)));
     }
 
     @Test
     public void numberNodeNotEquals(){
-        assertThat(new NumberNode(0), is(not(equalTo(new NumberNode(1)))));
+        assertThat(numberNode0, is(not(equalTo(numberNode1))));
+    }
+
+    @Test
+    public void typeNumberNodeEquals(){
+        assertThat(numberNode0.typeHashCode(), is(equalTo(numberNode1.typeHashCode())));
+    }
+
+    @Test
+    public void typeNumberNodeNotEquals(){
+        assertThat(numberNode0.typeHashCode(), is(not(equalTo(addNode.typeHashCode()))));
     }
 
     @Test
     public void infixNodeEquals(){
-        assertThat(add(0, 0), is(equalTo(add(0, 0))));
+        assertThat(addNode, is(equalTo(addNode)));
     }
 
     @Test
     public void infixNodeNotEquals(){
-        assertThat(add(0, 0), is(not(equalTo(sub(0, 0)))));
+        assertThat(addNode, is(not(equalTo(subNode))));
+    }
+
+    @Test
+    public void typeInfixNodeEquals(){
+        assertThat(addNode.typeHashCode(), is(equalTo(addNode.typeHashCode())));
+    }
+
+    @Test
+    public void typeInfixNodeNotEquals(){
+        assertThat(addNode.typeHashCode(), is(not(equalTo(subNode.typeHashCode()))));
     }
 
     @Test
     public void negateNodeEquals(){
-        assertThat(new NegateNode(new NumberNode(0)), is(equalTo(new NegateNode(new NumberNode(0)))));
+        assertThat(new NegateNode(numberNode0), is(equalTo(new NegateNode(numberNode0))));
     }
 
     @Test
     public void negateNodeNotEquals(){
-        assertThat(new NegateNode(new NumberNode(0)), is(not(equalTo(sub(0, 0)))));
+        assertThat(new NegateNode(numberNode0), is(not(equalTo(subNode))));
+    }
+
+    @Test
+    public void typeNegateNodeEquals(){
+        assertThat(new NegateNode(numberNode0).typeHashCode(), is(equalTo(new NegateNode(numberNode0).typeHashCode())));
+    }
+
+    @Test
+    public void typeNegateNodeNotEquals(){
+        assertThat(new NegateNode(numberNode0).typeHashCode(), is(not(equalTo(subNode.typeHashCode()))));
     }
 
     @Test
     public void parenthesisNodeEquals(){
-        assertThat(new ParenthesisNode(new NumberNode(0)), is(equalTo(new ParenthesisNode(new NumberNode(0)))));
+        assertThat(new ParenthesisNode(numberNode0), is(equalTo(new ParenthesisNode(numberNode0))));
     }
 
     @Test
     public void parenthesisNodeNotEquals(){
-        assertThat(new ParenthesisNode(new NumberNode(0)), is(not(equalTo(sub(0, 0)))));
+        assertThat(new ParenthesisNode(numberNode0), is(not(equalTo(subNode))));
+    }
+
+    @Test
+    public void typeParenthesisNodeEquals(){
+        assertThat(new ParenthesisNode(numberNode0).typeHashCode(), is(equalTo(new ParenthesisNode(numberNode0).typeHashCode())));
+    }
+
+    @Test
+    public void typeParenthesisNodeNotEquals(){
+        assertThat(new ParenthesisNode(numberNode0).typeHashCode(), is(not(equalTo(subNode.typeHashCode()))));
     }
 }

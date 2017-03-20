@@ -8,7 +8,7 @@ import java.lang.reflect.ParameterizedType;
  * Created by arabasso on 19/03/2017.
  */
 public abstract class AbstractHeuristicExpression<T>
-        implements HeuristicExpression {
+        extends HeuristicExpression {
 
     @Override
     public boolean isApplicable(
@@ -27,7 +27,7 @@ public abstract class AbstractHeuristicExpression<T>
     @Override
     public ExpressionNode apply(
             ExpressionNode node) {
-        return (ExpressionNode) apply((T) node);
+        return apply((T) node);
     }
 
     public abstract ExpressionNode apply(

@@ -15,8 +15,12 @@ public class HeuristicExpressionVisitor extends AstVisitor<ExpressionNode> {
 
     private List<HeuristicExpression> heuristics = new ArrayList<>();
 
-    public void addHeuristic(HeuristicExpression heuristic){
-        heuristics.add(heuristic);
+    public void addHeuristicExpression(HeuristicExpression heuristicExpressions){
+        heuristics.add(heuristicExpressions);
+    }
+
+    public void addHeuristicExpressions(List<HeuristicExpression> heuristicExpressions){
+        heuristics.addAll(heuristicExpressions);
     }
 
     @Override
@@ -26,42 +30,84 @@ public class HeuristicExpressionVisitor extends AstVisitor<ExpressionNode> {
 
     @Override
     public ExpressionNode visit(AdditionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+        ExpressionNode he = apply(node);
+
+        return (he != null)
+                ? he
+                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+    }
+
+    private ExpressionNode apply(ExpressionNode node) {
+        for (HeuristicExpression he :
+                heuristics) {
+            if (he.isApplicable(node)){
+                return he.apply(node);
+            }
+        }
+        return null;
     }
 
     @Override
     public ExpressionNode visit(SubtractionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+        ExpressionNode he = apply(node);
+
+        return (he != null)
+                ? he
+                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
     }
 
     @Override
     public ExpressionNode visit(MultiplicationNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+        ExpressionNode he = apply(node);
+
+        return (he != null)
+                ? he
+                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
     }
 
     @Override
     public ExpressionNode visit(PowNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+        ExpressionNode he = apply(node);
+
+        return (he != null)
+                ? he
+                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
     }
 
     @Override
     public ExpressionNode visit(DivisionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+        ExpressionNode he = apply(node);
+
+        return (he != null)
+                ? he
+                : node.newInstance(visit(node.getLeft()), visit(node.getRight()));
     }
 
     @Override
     public ExpressionNode visit(NegateNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return new NegateNode(visit(node.getInnerNode()));
+        ExpressionNode he = apply(node);
+
+        return (he != null)
+                ? he
+                : new NegateNode(visit(node.getInnerNode()));
     }
 
     @Override
     public ExpressionNode visit(FunctionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return new FunctionNode(node.getFunction(), visit(node.getArgument()));
+        ExpressionNode he = apply(node);
+
+        return (he != null)
+                ? he
+                : new FunctionNode(node.getFunction(), visit(node.getArgument()));
     }
 
     @Override
     public ExpressionNode visit(ParenthesisNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        return new ParenthesisNode(visit(node.getInnerNode()));
+        ExpressionNode he = apply(node);
+
+        return (he != null)
+                ? he
+                : new ParenthesisNode(visit(node.getInnerNode()));
     }
 
     @Override

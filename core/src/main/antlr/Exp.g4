@@ -10,17 +10,17 @@ compileUnit
 
 expression
     : op=(PLUS|MINUS) expression                                # unaryExpression
-    | left=multiplyingExpr op=(PLUS|MINUS) right=expression     # plusMinusExpression
+    | left=expression op=(PLUS|MINUS) right=multiplyingExpr     # plusMinusExpression
     | multiplyingExpr                                           # multiplyingExpressionNext
     ;
 
 multiplyingExpr
-    : left=powExpr op=(TIMES|DIV) right=multiplyingExpr         # timesDivExpression
+    : left=multiplyingExpr op=(TIMES|DIV) right=powExpr         # timesDivExpression
     | powExpr                                                   # powExpressionNext
     ;
 
 powExpr
-    : left=atom op=POW right=powExpr                            # powExpression
+    : left=powExpr op=POW right=atom                            # powExpression
     | atom                                                      # atomExpressionNext
     ;
 

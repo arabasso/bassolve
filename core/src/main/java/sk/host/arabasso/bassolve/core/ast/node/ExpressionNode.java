@@ -5,4 +5,7 @@ package sk.host.arabasso.bassolve.core.ast.node;
  *
  */
 public abstract class ExpressionNode implements Cloneable {
+    public int typeHashCode() {
+        return getClass().hashCode();
+    }
 }
