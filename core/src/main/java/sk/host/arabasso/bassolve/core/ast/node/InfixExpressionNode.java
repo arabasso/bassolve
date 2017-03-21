@@ -9,6 +9,7 @@ import sk.host.arabasso.bassolve.core.MathEx;
 public abstract class InfixExpressionNode extends ExpressionNode  {
     private ExpressionNode left;
     private ExpressionNode right;
+    private static boolean numberLeftAndRight;
 
     public InfixExpressionNode(ExpressionNode left, ExpressionNode right) {
         this.left = left;
@@ -19,6 +20,14 @@ public abstract class InfixExpressionNode extends ExpressionNode  {
 
     public ExpressionNode getLeft() {
         return left;
+    }
+
+    public NumberNode getLeftAsNumber() {
+        return (NumberNode) left;
+    }
+
+    public NumberNode getRightAsNumber() {
+        return (NumberNode) right;
     }
 
     public ExpressionNode getRight() {
@@ -52,6 +61,18 @@ public abstract class InfixExpressionNode extends ExpressionNode  {
         result = 31 * result + left.typeHashCode();
         result = 31 * result + right.typeHashCode();
         return result;
+    }
+
+    public boolean isNumberLeft() {
+        return left instanceof NumberNode;
+    }
+
+    public boolean isNumberRight() {
+        return right instanceof NumberNode;
+    }
+
+    public boolean isNumberLeftAndRight() {
+        return isNumberLeft() && isNumberRight();
     }
 
     //    public ExpressionNode simplify(){

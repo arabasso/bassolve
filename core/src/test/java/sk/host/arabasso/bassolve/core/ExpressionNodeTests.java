@@ -106,4 +106,69 @@ public class ExpressionNodeTests extends ExpressionTests {
     public void typeParenthesisNodeNotEquals(){
         assertThat(new ParenthesisNode(numberNode0).typeHashCode(), is(not(equalTo(subNode.typeHashCode()))));
     }
+
+    @Test
+    public void isNumber() {
+        assertThat(numberNode0.isNumber(), is(equalTo(true)));
+    }
+
+    @Test
+    public void isNotNumber() {
+        assertThat(new ParenthesisNode(numberNode0).isNumber(), is(equalTo(false)));
+    }
+
+    @Test
+    public void isNumberLeft() {
+        assertThat(addNode.isNumberLeft(), is(equalTo(true)));
+    }
+
+    @Test
+    public void isNotNumberLeft() {
+        assertThat(add(add(0, 0), 0).isNumberLeft(), is(equalTo(false)));
+    }
+
+    @Test
+    public void isNumberRight() {
+        assertThat(addNode.isNumberRight(), is(equalTo(true)));
+    }
+
+    @Test
+    public void isNotNumberRight() {
+        assertThat(add(0, sub(1, 2)).isNumberRight(), is(equalTo(false)));
+    }
+
+    @Test
+    public void isNumberLeftAndRight() {
+        assertThat(addNode.isNumberLeftAndRight(), is(equalTo(true)));
+    }
+
+    @Test
+    public void isNumberParenthesisInnerNode() {
+        assertThat(new ParenthesisNode(numberNode0).isNumberInnerNode(), is(equalTo(true)));
+    }
+
+    @Test
+    public void isNotNumberParenthesisInnerNode() {
+        assertThat(new ParenthesisNode(add(0, 1)).isNumberInnerNode(), is(equalTo(false)));
+    }
+
+    @Test
+    public void isNumberFunctionArgument() {
+        assertThat(new FunctionNode("cos", numberNode0).isNumberArgument(), is(equalTo(true)));
+    }
+
+    @Test
+    public void isNotNumberFunctionArgument() {
+        assertThat(new FunctionNode("sin", add(0, 1)).isNumberArgument(), is(equalTo(false)));
+    }
+
+    @Test
+    public void isNumberNegateInnerNode() {
+        assertThat(new NegateNode(numberNode0).isNumberInnerNode(), is(equalTo(true)));
+    }
+
+    @Test
+    public void isNotNumberNegateInnerNode() {
+        assertThat(new NegateNode(add(0, 1)).isNumberInnerNode(), is(equalTo(false)));
+    }
 }

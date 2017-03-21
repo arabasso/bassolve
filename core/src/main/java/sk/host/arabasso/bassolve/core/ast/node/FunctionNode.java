@@ -23,6 +23,14 @@ public class FunctionNode extends ExpressionNode {
         return argument;
     }
 
+    public boolean isNumberArgument() {
+        return argument instanceof NumberNode;
+    }
+
+    public NumberNode getArgumentAsNumber() {
+        return (NumberNode) argument;
+    }
+
     @Override
     protected Object clone()
             throws CloneNotSupportedException {

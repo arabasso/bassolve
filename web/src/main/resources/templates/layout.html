@@ -8,6 +8,7 @@
     <title>Title</title>
 
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/normalize.css/3.0.2/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 	
 	<!--[if lte IE 8]>
@@ -20,18 +21,16 @@
 	<script type="text/javascript" th:src="@{/script.js}"></script>
 </head>
 <body>
-<header>
-    <div th:text="#{application.title}"></div>
+<header class="grid">
+    <h1 class="grid-1-2"><i class="fa fa-gears" aria-hidden="true"/> <span th:text="#{application.title}" th:remove="tag"></span></h1><nav class="grid-1-2">
+        <ul>
+            <li><a th:href="@{/index}"><i class="fa fa-home" aria-hidden="true"/> Home</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/heuristic/index}"><i class="fa fa-code" aria-hidden="true"/> <span th:text="#{application.menu.heuristic.text}" th:remove="tag">Heuristics</span></a></li>
+            <li sec:authorize="isAnonymous()"><a th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"/> <span th:text="#{application.menu.login.text}" th:remove="tag"></span></a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"/> <span th:text="#{application.menu.logout.text}" th:remove="tag"></span></a></li>
+        </ul>
+    </nav>
 </header>
-
-<nav>
-    <ul>
-        <li><a th:href="@{/index}">Home</a></li>
-        <li sec:authorize="isAuthenticated()"><a th:href="@{/heuristic/index}" th:text="#{application.menu.heuristic.text}">Heuristics</a></li>
-        <li sec:authorize="isAnonymous()"><a th:href="@{/login}" th:text="#{application.menu.login.text}">Login</a></li>
-        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" th:text="#{application.menu.logout.text}">Logout</a></li>
-    </ul>
-</nav>
 
 <section id="content" layout:fragment="body"></section>
 

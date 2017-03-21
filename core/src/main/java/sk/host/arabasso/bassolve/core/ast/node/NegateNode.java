@@ -15,6 +15,14 @@ public class NegateNode extends ExpressionNode {
         return innerNode;
     }
 
+    public boolean isNumberInnerNode(){
+        return innerNode instanceof NumberNode;
+    }
+
+    public NumberNode getInnerNodeAsNumber() {
+        return (NumberNode) innerNode;
+    }
+
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return new NegateNode(getInnerNode());

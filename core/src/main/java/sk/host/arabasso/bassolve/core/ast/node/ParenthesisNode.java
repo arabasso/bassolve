@@ -15,6 +15,10 @@ public class ParenthesisNode extends ExpressionNode {
         return innerNode;
     }
 
+    public NumberNode getInnerNodeAsNumber() {
+        return (NumberNode) innerNode;
+    }
+
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return new ParenthesisNode(getInnerNode());
@@ -42,5 +46,9 @@ public class ParenthesisNode extends ExpressionNode {
         int result = getClass().hashCode();
         result = 31 * result + innerNode.typeHashCode();
         return result;
+    }
+
+    public boolean isNumberInnerNode() {
+        return innerNode instanceof NumberNode;
     }
 }

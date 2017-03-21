@@ -1,5 +1,6 @@
 $(function(){
     var editor = ace.edit("source");
+
     editor.setTheme("ace/theme/xcode");
     editor.setFontSize("1em");
     //editor.setShowInvisibles(true);

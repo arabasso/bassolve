@@ -8,4 +8,8 @@ public abstract class ExpressionNode implements Cloneable {
     public int typeHashCode() {
         return getClass().hashCode();
     }
+
+    public boolean isNumber() {
+        return this instanceof NumberNode;
+    }
 }

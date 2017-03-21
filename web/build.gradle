@@ -36,6 +36,7 @@ dependencies {
 	compile('org.webjars:normalize.css:3.0.2')
 	compile('org.webjars:respond:1.4.2')
 	compile('org.webjars:html5shiv:3.7.3')
+	compile('org.webjars:font-awesome:4.7.0')
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
