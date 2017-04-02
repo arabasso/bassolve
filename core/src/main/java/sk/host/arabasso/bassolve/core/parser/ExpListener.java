@@ -20,6 +20,30 @@ public interface ExpListener extends ParseTreeListener {
 	 */
 	void exitCompileUnit(ExpParser.CompileUnitContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code equationExpression}
+	 * labeled alternative in {@link ExpParser#equation}.
+	 * @param ctx the parse tree
+	 */
+	void enterEquationExpression(ExpParser.EquationExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code equationExpression}
+	 * labeled alternative in {@link ExpParser#equation}.
+	 * @param ctx the parse tree
+	 */
+	void exitEquationExpression(ExpParser.EquationExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionNext}
+	 * labeled alternative in {@link ExpParser#equation}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNext(ExpParser.ExpressionNextContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionNext}
+	 * labeled alternative in {@link ExpParser#equation}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNext(ExpParser.ExpressionNextContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code multiplyingExpressionNext}
 	 * labeled alternative in {@link ExpParser#expression}.
 	 * @param ctx the parse tree

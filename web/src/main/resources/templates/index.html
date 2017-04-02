@@ -1,22 +1,25 @@
-<section layout:decorator="layout" layout:fragment="body"
-         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-         xmlns:th="http://www.thymeleaf.org">
-    <!--/*@thymesVar id="expression" type="sk.host.arabasso.bassolve.web.form.ExpressionForm"*/-->
+<section class="content" layout:decorator="layout" layout:fragment="body"
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <!--/*@thymesVar id="form" type="sk.host.arabasso.bassolve.web.form.HeuristicForm"*/-->
     <form th:action="@{/index}" th:object="${form}" method="post">
         <ul th:if="${#fields.hasErrors('global')}">
             <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</li>
         </ul>
 
+        <fieldset>
         <div>
             <label th:for="*{value}" th:text="#{expression.form.text}">Expression</label>
             <input type="text" th:field="*{value}" th:placeholder="#{expression.form.placeholder}"/>
-            <button type="submit" th:text="#{expression.form.submit.text}">Solve</button>
             <div th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></div>
         </div>
+            <button type="submit" th:text="#{expression.form.submit.text}">Solve</button>
+            <div id="expression" th:if="${form.hasValue()}">
+                <!--/*@thymesVar id="exp" type="System.util.String"*/-->
+                <p th:each="r : ${result}" th:text="|${r}|"></p>
+            </div>
+        </fieldset>
     </form>
 
-    <div id="expression" th:if="${form.hasValue()}">
-        <!--/*@thymesVar id="exp" type="System.util.String"*/-->
-        <div th:each="exp : ${form.visit()}" th:text="|= ${exp}|"></div>
-    </div>
+
 </section>

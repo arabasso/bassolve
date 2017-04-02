@@ -19,6 +19,20 @@ public interface ExpVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCompileUnit(ExpParser.CompileUnitContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code equationExpression}
+	 * labeled alternative in {@link ExpParser#equation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEquationExpression(ExpParser.EquationExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionNext}
+	 * labeled alternative in {@link ExpParser#equation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionNext(ExpParser.ExpressionNextContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code multiplyingExpressionNext}
 	 * labeled alternative in {@link ExpParser#expression}.
 	 * @param ctx the parse tree

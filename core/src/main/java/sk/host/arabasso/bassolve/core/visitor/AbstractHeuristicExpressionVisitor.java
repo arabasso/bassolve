@@ -2,20 +2,22 @@ package sk.host.arabasso.bassolve.core.visitor;
 
 import sk.host.arabasso.bassolve.core.ast.node.ExpressionNode;
 
-import java.lang.reflect.ParameterizedType;
-
 /**
  * Created by arabasso on 20/03/2017.
  */
 public abstract class AbstractHeuristicExpressionVisitor<T> extends HeuristicExpressionVisitor {
 
+    private Class classNode;
+
+    protected AbstractHeuristicExpressionVisitor(Class classNode){
+        this.classNode = classNode;
+    }
+
     @Override
     public boolean isApplicable(
             ExpressionNode node) {
 
-        Class clazz = (Class) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-
-        if (!clazz.isInstance(node)) return false;
+        if (!classNode.isInstance(node)) return false;
 
         return isApplicable((T) node);
     }

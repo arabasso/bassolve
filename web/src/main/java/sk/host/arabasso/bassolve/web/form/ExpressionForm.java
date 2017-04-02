@@ -1,6 +1,7 @@
 package sk.host.arabasso.bassolve.web.form;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.validation.annotation.Validated;
 import sk.host.arabasso.bassolve.core.ast.node.ExpressionNode;
 import sk.host.arabasso.bassolve.core.visitor.AstVisitor;
 import sk.host.arabasso.bassolve.core.visitor.PrintExpressionVisitor;
@@ -15,7 +16,15 @@ import java.util.Set;
  * Created by arabasso on 26/10/2016.
  *
  */
+@Validated
 public class ExpressionForm {
+    public ExpressionForm(String value) {
+        this.value = value;
+    }
+
+    public ExpressionForm() {
+    }
+
     @NotBlank
     private String value;
 
@@ -29,43 +38,5 @@ public class ExpressionForm {
 
     public boolean hasValue() {
         return this.value != null && this.value.length() > 0;
-    }
-
-    private Set<AstVisitor<ExpressionNode>> visitors = new HashSet<>();
-
-    public void addVisitor(AstVisitor<ExpressionNode> visitor) {
-        visitors.add(visitor);
-    }
-
-    public List<String> visit() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        PrintExpressionVisitor printExpressionVisitor = new PrintExpressionVisitor();
-
-        List<String> list = new ArrayList<>();
-
-        ExpressionNode ast = AstVisitor.visit(value);
-
-        list.add(printExpressionVisitor.visit(ast));
-
-        int previousHashCode = -1;
-        int hashCode = ast.hashCode();
-
-        while(previousHashCode != hashCode) {
-            previousHashCode = hashCode;
-
-            for (AstVisitor<ExpressionNode> visitor : visitors) {
-                ast = visitor.visit(ast);
-
-                hashCode = ast.hashCode();
-
-
-                if (previousHashCode != hashCode) {
-                    list.add(printExpressionVisitor.visit(ast));
-
-                    break;
-                }
-            }
-        }
-
-        return list;
     }
 }

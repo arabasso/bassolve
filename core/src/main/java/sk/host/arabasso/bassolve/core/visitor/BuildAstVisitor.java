@@ -13,8 +13,59 @@ import java.lang.reflect.Method;
  */
 public class BuildAstVisitor extends ExpBaseVisitor<ExpressionNode> {
     public ExpressionNode visitCompileUnit(ExpParser.CompileUnitContext context) {
-        return visit(context.expression());
+        return visit(context.equation());
     }
+
+    @Override
+    public ExpressionNode visitExpressionNext(ExpParser.ExpressionNextContext ctx) {
+        return visit(ctx.expression());
+    }
+
+    @Override
+    public ExpressionNode visitEquationExpression(ExpParser.EquationExpressionContext ctx) {
+        InfixExpressionNode node;
+
+        ExpressionNode left = visit(ctx.left);
+        ExpressionNode right = visit(ctx.right);
+
+        switch (ctx.op.getType()) {
+            case ExpLexer.EQ:
+                node = new EqualityNode(left, right);
+                break;
+
+            case ExpLexer.NEQ:
+                node = new NotEqualityNode(left, right);
+                break;
+
+            default:
+                throw new UnsupportedOperationException();
+        }
+
+        return node;
+    }
+
+    //    @Override
+//    public ExpressionNode visitEquation(ExpParser.EquationContext ctx) {
+//        InfixExpressionNode node;
+//
+//        ExpressionNode left = visit(ctx.left);
+//        ExpressionNode right = visit(ctx.right);
+//
+//        switch (ctx.op.getType()) {
+//            case ExpLexer.EQ:
+//                node = new EqualityNode(left, right);
+//                break;
+//
+//            case ExpLexer.NEQ:
+//                node = new NotEqualityNode(left, right);
+//                break;
+//
+//            default:
+//                throw new UnsupportedOperationException();
+//        }
+//
+//        return node;
+//    }
 
     @Override
     public ExpressionNode visitPlusMinusExpression(ExpParser.PlusMinusExpressionContext ctx) {
@@ -90,10 +141,10 @@ public class BuildAstVisitor extends ExpBaseVisitor<ExpressionNode> {
         return new NumberNode(Double.parseDouble(ctx.value.getText()));
     }
 
-    @Override
-    public ExpressionNode visitIdentfierExpression(ExpParser.IdentfierExpressionContext ctx) {
-        return super.visitIdentfierExpression(ctx);
-    }
+//    @Override
+//    public ExpressionNode visitIdentfierExpression(ExpParser.IdentfierExpressionContext ctx) {
+//        return super.visitIdentfierExpression(ctx);
+//    }
 
     @Override
     public ExpressionNode visitParensExpression(ExpParser.ParensExpressionContext ctx) {

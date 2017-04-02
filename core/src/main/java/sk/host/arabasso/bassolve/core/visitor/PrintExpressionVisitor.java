@@ -17,6 +17,16 @@ public class PrintExpressionVisitor extends AstVisitor<String> {
     }
 
     @Override
+    public String visit(EqualityNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        return Concat(node, "=");
+    }
+
+    @Override
+    public String visit(BooleanNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        return Boolean.toString(node.getValue());
+    }
+
+    @Override
     public String visit(AdditionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         return Concat(node, "+");
     }

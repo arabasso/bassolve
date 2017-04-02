@@ -2,6 +2,7 @@ package sk.host.arabasso.bassolve.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,7 @@ public class HeuristicController {
     }
 
     @PostMapping(value = "/create")
+    @Transactional
     public String create(@Valid @ModelAttribute("form") HeuristicForm form, BindingResult bindingResult){
         Heuristic heuristic = new Heuristic(form.getName(), form.getDate(), form.getSource());
 
@@ -68,6 +70,7 @@ public class HeuristicController {
     }
 
     @PostMapping("/edit")
+    @Transactional
     public String edit(@Valid @ModelAttribute("form") HeuristicForm form, BindingResult bindingResult){
         Heuristic heuristic = heuristicRepository.findOne(form.getId());
 
@@ -91,6 +94,7 @@ public class HeuristicController {
     }
 
     @GetMapping("/delete")
+    @Transactional
     public String delete(long id){
         heuristicRepository.delete(id);
 

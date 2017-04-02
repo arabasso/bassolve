@@ -7,8 +7,8 @@
     <table>
         <thead>
         <tr>
-            <th>#</th>
-            <th th:text="#{heuristic.index.list.name.text}">Name</th>
+            <th class="text-align-left">#</th>
+            <th class="text-align-left" th:text="#{heuristic.index.list.name.text}">Name</th>
             <th th:text="#{heuristic.index.list.date.text}">Date</th>
             <th th:text="#{heuristic.index.list.action.edit.text}">Edit</th>
             <th th:text="#{heuristic.index.list.action.delete.text}">Delete</th>
@@ -20,9 +20,9 @@
         <tr th:each="u,status : ${list}">
             <td th:text="${u.id}"></td>
             <td th:text="${u.name}">Name</td>
-            <td th:text="${{u.date}}">01/01/0001</td>
-            <td><a th:href="@{/heuristic/edit(id=${u.id})}" th:text="#{heuristic.index.list.action.link.edit.text}">Edit</a></td>
-            <td><a th:href="@{/heuristic/delete(id=${u.id})}" th:text="#{heuristic.index.list.action.link.delete.text}">Delete</a></td>
+            <td class="text-align-center" th:text="${{u.date}}">01/01/0001</td>
+            <td class="text-align-center"><a th:href="@{/heuristic/edit(id=${u.id})}" th:text="#{heuristic.index.list.action.link.edit.text}">Edit</a></td>
+            <td class="text-align-center"><a th:href="@{/heuristic/delete(id=${u.id})}" th:text="#{heuristic.index.list.action.link.delete.text}">Delete</a></td>
         </tr>
         </tbody>
     </table>

@@ -3,7 +3,6 @@ package sk.host.arabasso.bassolve.core;
 import org.junit.Before;
 import sk.host.arabasso.bassolve.core.ast.node.*;
 import sk.host.arabasso.bassolve.core.visitor.AstVisitor;
-import sk.host.arabasso.bassolve.core.visitor.EvaluateExpressionVisitor;
 import sk.host.arabasso.bassolve.core.visitor.PrintExpressionVisitor;
 //import sk.host.arabasso.bassolve.core.visitor.SimplifyExpressionVisitor;
 
@@ -13,13 +12,11 @@ import sk.host.arabasso.bassolve.core.visitor.PrintExpressionVisitor;
  */
 public abstract class ExpressionTests {
     protected PrintExpressionVisitor printVisitor;
-    protected EvaluateExpressionVisitor evalVisitor;
     //protected SimplifyExpressionVisitor simplifyVisitor;
 
     @Before
     public void setUp() throws Exception {
         printVisitor = new PrintExpressionVisitor();
-        evalVisitor = new EvaluateExpressionVisitor();
         //simplifyVisitor = new SimplifyExpressionVisitor();
     }
 

@@ -14,6 +14,8 @@ import java.lang.reflect.InvocationTargetException;
  */
 public abstract class AstVisitor<T>
 {
+    public abstract T visit(EqualityNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException;
+    public abstract T visit(BooleanNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException;
     public abstract T visit(AdditionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException;
     public abstract T visit(SubtractionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException;
     public abstract T visit(MultiplicationNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException;

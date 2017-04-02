@@ -5,7 +5,12 @@ package sk.host.arabasso.bassolve.core.parser;
 }
 
 compileUnit
-    : expression EOF
+    : equation EOF
+    ;
+
+equation
+    : left=expression op=(EQ|NEQ|LT|GT|LTE|GTE) right=expression    # equationExpression
+    | expression                                                    # expressionNext
     ;
 
 expression
@@ -81,20 +86,28 @@ GT
     : '>'
     ;
 
+GTE
+    : '>='
+    ;
+
 LT
     : '<'
+    ;
+
+LTE
+    : '<='
     ;
 
 EQ
     : '='
     ;
 
-POINT
-    : '.'
+NEQ
+    : '<>' | '!='
     ;
 
-E
-    : 'e' | 'E'
+POINT
+    : '.'
     ;
 
 POW
@@ -102,11 +115,15 @@ POW
     ;
 
 LETTER
-    : [a-zA-Z]
+    : 'a'..'z' | 'A'..'Z'
     ;
 
 DIGIT
-    : [0-9]
+    : '0'..'9'
+    ;
+
+E
+    : 'e' | 'E'
     ;
 
 WS

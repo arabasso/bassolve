@@ -23,6 +23,20 @@ public class HeuristicExpressionVisitor extends AstVisitor<ExpressionNode> {
     }
 
     @Override
+    public ExpressionNode visit(EqualityNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        if (isApplicable(node)) {
+            return apply(node);
+        }
+
+        return node.newInstance(visit(node.getLeft()), visit(node.getRight()));
+    }
+
+    @Override
+    public ExpressionNode visit(BooleanNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        return node;
+    }
+
+    @Override
     public ExpressionNode visit(AdditionNode node) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         if (isApplicable(node)) {
             return apply(node);

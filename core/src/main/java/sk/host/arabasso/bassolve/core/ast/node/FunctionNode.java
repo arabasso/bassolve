@@ -23,6 +23,10 @@ public class FunctionNode extends ExpressionNode {
         return argument;
     }
 
+    public boolean isMethod(String name) {
+        return name != null && name.equals(method);
+    }
+
     public boolean isNumberArgument() {
         return argument instanceof NumberNode;
     }
