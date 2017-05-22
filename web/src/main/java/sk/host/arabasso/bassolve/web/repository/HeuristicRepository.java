@@ -9,5 +9,5 @@ import sk.host.arabasso.bassolve.web.entity.Heuristic;
  */
 @Repository
 public interface HeuristicRepository extends JpaRepository<Heuristic, Long> {
-    
+
 }
