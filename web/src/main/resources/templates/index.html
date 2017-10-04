@@ -8,12 +8,10 @@
         </ul>
 
         <fieldset>
-        <div>
-            <label th:for="*{value}" th:text="#{expression.form.text}">Expression</label>
-            <input type="text" th:field="*{value}" th:placeholder="#{expression.form.placeholder}"/>
+            <div class="grid">
+                <div class="grid-1-5"><label th:for="*{value}" th:text="#{expression.form.text}">Expression</label></div ><div class="grid-3-5"><input class="width-1" type="text" th:field="*{value}" th:placeholder="#{expression.form.placeholder}"/></div><div class="grid-1-5"><button class="width-1" type="submit" th:text="#{expression.form.submit.text}">Solve</button></div>
+            </div>
             <div th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></div>
-        </div>
-            <button type="submit" th:text="#{expression.form.submit.text}">Solve</button>
             <div id="expression" th:if="${form.hasValue()}">
                 <!--/*@thymesVar id="exp" type="System.util.String"*/-->
                 <p th:each="r : ${result}" th:text="|${r}|"></p>
