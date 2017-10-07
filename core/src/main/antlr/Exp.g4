@@ -36,16 +36,6 @@ atom
     | LPAREN expression RPAREN                                  # parensExpression
     ;
 
-//expression
-//    : LPAREN expression RPAREN                         # parensExpression
-//    | op=(PLUS|MINUS) expression                       # unaryExpression
-//    | left=expression op=POW right=expression          # infixExpression
-//    | left=expression op=(TIMES|DIV) right=expression  # infixExpression
-//    | left=expression op=(PLUS|MINUS) right=expression # infixExpression
-//    | id=identifier LPAREN expression RPAREN           # funcExpression
-//    | value=number                                     # numberExpr
-//    ;
-
 number
     : DIGIT+ (POINT DIGIT+)? (E (PLUS|MINUS) DIGIT+)?
     ;

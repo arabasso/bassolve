@@ -118,6 +118,14 @@ footer{
     width: 100%;
 }
 
+.width-1-5 {
+    width: 50%;
+}
+
+.margin-v-auto {
+    margin: 0 auto;
+}
+
 table {
     width: 100%;
 }

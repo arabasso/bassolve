@@ -4,11 +4,9 @@
     <h2 th:text="#{heuristic.create.title}">Create</h2>
     <!--/*@thymesVar id="form" type="sk.host.arabasso.bassolve.web.form.HeuristicForm"*/-->
     <form th:action="${#httpServletRequest.requestURI}" th:object="${form}" method="post">
-	<pre>
         <ul th:if="${#fields.hasErrors('global')}">
             <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</li>
         </ul>
-		</pre>
 
         <fieldset>
             <input type="hidden" th:field="*{id}"/>
@@ -26,7 +24,6 @@
             </div>
 
             <div>
-                <label th:for="*{source}" th:text="#{heuristic.create.form.source.text}">Source</label>
                 <textarea th:name="source" th:text="*{source}" th:placeholder="#{heuristic.create.form.source.placeholder}" />
                 <div th:id="source"/>
                 <div th:if="${#fields.hasErrors('source')}" th:errors="*{source}"></div>
