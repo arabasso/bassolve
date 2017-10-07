@@ -37,6 +37,7 @@ gradle-app.setting
 # ----
 .idea
 .shelf
+.ideaDataSources
 /*.iml
 /*.ipr
 /*.iws
