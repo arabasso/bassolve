@@ -23,12 +23,6 @@ public class Heuristic implements Serializable {
     private LocalDate date;
     @Lob
     public String source;
-    @OneToMany(mappedBy = "heuristic", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<HeuristicTest> tests;
-
-    protected Heuristic() {
-        this.tests = new HashSet<>();
-    }
 
     public Heuristic(String name, LocalDate date, String source) {
         this(name, date);
@@ -75,18 +69,6 @@ public class Heuristic implements Serializable {
 
     public void setSource(String source) {
         this.source = source;
-    }
-
-    public void addTest(String input, String result){
-        tests.add(new HeuristicTest(input, result, this));
-    }
-
-    public void removeTest(long id){
-        tests.removeIf(r -> r.getId() == id);
-    }
-
-    public Set<HeuristicTest> getTests() {
-        return tests;
     }
 
     public HeuristicExpressionVisitor getHeuristic() {
