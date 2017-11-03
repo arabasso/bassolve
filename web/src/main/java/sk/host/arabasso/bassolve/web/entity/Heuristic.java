@@ -23,6 +23,9 @@ public class Heuristic implements Serializable {
     private LocalDate date;
     @Lob
     public String source;
+	
+	public Heuristic(){
+	}
 
     public Heuristic(String name, LocalDate date, String source) {
         this(name, date);

@@ -60,7 +60,10 @@ public class HomeController {
         return "index";
     }
 
-    public List<String> visit(String value) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public List<String> visit(String value)
+            throws NoSuchMethodException,
+            IllegalAccessException,
+            InvocationTargetException {
         PrintExpressionVisitor printExpressionVisitor = new PrintExpressionVisitor();
 
         List<String> list = new ArrayList<>();
