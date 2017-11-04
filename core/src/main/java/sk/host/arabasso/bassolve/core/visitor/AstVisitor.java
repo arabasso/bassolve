@@ -1,7 +1,7 @@
 package sk.host.arabasso.bassolve.core.visitor;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import sk.host.arabasso.bassolve.core.ast.node.*;
 import sk.host.arabasso.bassolve.core.parser.ExpLexer;
 import sk.host.arabasso.bassolve.core.parser.ExpParser;
@@ -30,8 +30,15 @@ public abstract class AstVisitor<T>
         ANTLRInputStream in = new ANTLRInputStream(input);
 
         ExpLexer lexer = new ExpLexer(in);
+
+        ThrowingErrorListener listener = new ThrowingErrorListener();
+
+        lexer.addErrorListener(listener);
+
         CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         ExpParser parser = new ExpParser(tokenStream);
+
+        parser.addErrorListener(listener);
 
         ExpParser.CompileUnitContext cst = parser.compileUnit();
 

@@ -24,7 +24,7 @@ public abstract class FunctionHeuristicExpressionVisitor extends AbstractHeurist
     public ExpressionNode apply(FunctionNode node) {
         NumberNode n = node.getArgumentAsNumber();
 
-        return new NumberNode(Math.tan(n.getValue()));
+        return new NumberNode(apply(n.getValue()));
     }
 
     public abstract double apply(double argument);

@@ -5,6 +5,11 @@ import sk.host.arabasso.bassolve.core.parser.ExpBaseVisitor;
 import sk.host.arabasso.bassolve.core.parser.ExpLexer;
 import sk.host.arabasso.bassolve.core.parser.ExpParser;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
 /**
  * Created by arabasso on 04/10/2016.
  *
@@ -123,6 +128,14 @@ public class BuildAstVisitor extends ExpBaseVisitor<ExpressionNode> {
 
     @Override
     public ExpressionNode visitNumber(ExpParser.NumberContext ctx) {
+        DecimalFormat df = (DecimalFormat) NumberFormat.getNumberInstance(Locale.US);
+
+        try {
+            return new NumberNode(df.parse(ctx.getText()).doubleValue());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         return super.visitNumber(ctx);
     }
 
