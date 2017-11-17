@@ -9,14 +9,11 @@ import sk.host.arabasso.bassolve.core.MathEx;
 public abstract class InfixExpressionNode extends ExpressionNode  {
     private ExpressionNode left;
     private ExpressionNode right;
-    private static boolean numberLeftAndRight;
 
     public InfixExpressionNode(ExpressionNode left, ExpressionNode right) {
         this.left = left;
         this.right = right;
     }
-
-//    public abstract double execute(double left, double right);
 
     public ExpressionNode getLeft() {
         return left;
