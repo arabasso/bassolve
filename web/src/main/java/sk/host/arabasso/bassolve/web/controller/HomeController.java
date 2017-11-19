@@ -28,7 +28,8 @@ public class HomeController {
     public String index(
             Model model) {
 
-        model.addAttribute("form", new ExpressionForm("100 + 2 - 3 * 4 + 8 / 4 - 2 ^ 3"));
+        //model.addAttribute("form", new ExpressionForm("100 + 2 - 3 * 4 + 8 / 4 - 2 ^ 3"));
+		model.addAttribute("form", new ExpressionForm(""));
 
         return "index";
     }
